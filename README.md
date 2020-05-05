@@ -5,11 +5,25 @@ makefile
 
 #### ifeq
 
-変数varsが1なら内部の処理を実行
+条件分岐を開始し、条件を指定
+
+このディレクティヴは二つの引数を持ち、括弧で括った中でコンマで分けて記述。
+
+下記の例では変数varsが1なら内部の処理を実行
 
 ``` makefile
 ifeq ($(vars),1)
   @echo "test"
+endif
+
+# コンパイラごとに処理を分けるといった書き方をするなら以下の感じ
+libs_for_gcc = -lgnu
+normal_libs =
+
+ifeq ($(CC),gcc)
+  libs=$(libs_for_gcc)
+else
+  libs=$(normal_libs)
 endif
 ```
 
@@ -51,7 +65,7 @@ $*|ターゲットのパターンマッチに一致した部分
 
 ## 関数
 
-参考: 
+参考: https://qiita.com/chibi929/items/b8c5f36434d5d3fbfa4a
 
 |関数|概要|
 |---|----|
