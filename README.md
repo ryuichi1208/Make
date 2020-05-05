@@ -17,7 +17,7 @@ endif
 
 KBUILD_CHECKSRCが定義されていたら内部を実行する
 
-```
+``` makefile
 ifndef KBUILD_CHECKSRC
   KBUILD_CHECKSRC = 0
 endif
@@ -25,7 +25,7 @@ endif
 
 下記のようにnestすることも可能
 
-```
+``` makefile
 ifeq ($(KBUILD_EXTMOD),)
         ifneq ($(filter config %config,$(MAKECMDGOALS)),)
 		config-build := 1
@@ -38,3 +38,8 @@ endif
 
 ## 特殊変数
 
+|変数|概要|
+|---|----|
+$@|ターゲット名
+$<|依存関係の一番最初の名前
+$^|ターゲットの全ての依存関係の名前。
